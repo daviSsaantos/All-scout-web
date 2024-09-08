@@ -1,0 +1,816 @@
+* {
+    box-sizing: border-box; /* Inclui padding e bordas na largura total */
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #00101E;
+    overflow-x: hidden; /* Remove qualquer rolagem horizontal */
+}
+
+/* Estilo do cabeçalho */
+.top-nav {
+    width: 100%;
+    padding: 3px 20px;
+    background: radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0.8) 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #006eff;
+}
+
+.top-nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-nav {
+    display: flex;
+    align-items: center;
+}
+
+.mini-logo {
+    width: 110px;
+}
+
+.main-nav {
+    display: flex;
+    gap: 15px; /* Espaço entre os links */
+    align-items: center;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    white-space: nowrap; /* Impede quebra de linha dentro dos links */
+}
+
+.main-nav a:hover {
+    text-decoration: underline;
+}
+
+.search-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+.search-bar {
+    width: 320px;
+    padding: 8px;
+    border: 2px solid #006eff;
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+}
+
+.right-nav {
+    display: flex;
+    align-items: center;
+}
+
+.favorites img {
+    width: 18px;
+    margin-right: 20px; /* Espaço entre o ícone de favoritos e o botão Minha Conta */
+}
+
+.account-button {
+    color: #006eff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 2px solid #006eff;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content-wrapper {
+    flex: 1;
+    margin-top: 80px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
+    padding: 0 20px;
+}
+
+/* Estilo do rodapé */
+.site-footer {
+    background-color: black;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto;
+    width: 100%;
+    border-top: 1px solid #006eff;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 10px;
+    min-width: 200px;
+}
+
+.footer-section h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.footer-section p, .footer-section ul {
+    margin: 0;
+    padding: 0;
+}
+
+.footer-section ul {
+    list-style-type: none;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+.social-media-icons {
+    margin-top: 10px;
+}
+
+.social-media-icons img {
+    width: 28px;
+}
+
+.social-media-icons a {
+    display: inline-block;
+    margin: 0 5px;
+    color: #bbb;
+}
+
+.footer-bottom {
+    background: radial-gradient(circle, rgba(46, 46, 46, 0.8), rgba(0, 0, 0, 0) 100%);
+    padding: 10px 0;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #bbb;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* Carrossel de Notícias */
+.news-carousel {
+    width: 100vw; /* Garante que ocupe 100% da largura da tela */
+    margin: 0; /* Remove margens para ocupar toda a largura */
+    padding: 0; /* Remove padding para garantir a largura total */
+    position: relative;
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse o contêiner */
+    height: 600px; /* Ajuste a altura conforme necessário */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+
+/* Configuração dos slides do carrossel */
+.carousel-slide {
+    position: absolute;
+    width: 100%; /* Garante que o slide ocupe 100% da largura do carrossel */
+    height: 100%; /* Faz com que o slide ocupe toda a altura do carrossel */
+    display: flex;
+    flex-direction: column; /* Organiza a imagem e o conteúdo em coluna */
+    justify-content: flex-end; /* Garante que o conteúdo fique embaixo */
+    align-items: center;
+    color: white;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Estilo das imagens do carrossel */
+.carousel-slide img {
+    width: 100%; /* Garante que a imagem ocupe 100% da largura do slide */
+    height: 100%; /* Faz com que a imagem ocupe toda a altura do slide */
+    object-fit: cover; /* Faz com que a imagem cubra a área sem distorcer */
+}
+
+/* Estilo do conteúdo do carrossel */
+.carousel-content {
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    text-align: center;
+    color: white;
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+
+/* Estilo dos títulos e descrições do carrossel */
+.carousel-content h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #006eff;
+}
+
+.carousel-content p {
+    margin: 10px 0 0;
+    font-size: 16px;
+    color: white;
+}
+
+.carousel-content a {
+    color: white;
+    text-decoration: none;
+}
+
+.carousel-content a:hover {
+    text-decoration: underline;
+}
+
+/* Botões de navegação do carrossel */
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Centraliza verticalmente */
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: none;
+    padding: 10px 15px; /* Aumenta o tamanho do padding para dar mais espaço para as setas */
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 24px; /* Aumenta o tamanho da fonte para as setas serem mais visíveis */
+    border-radius: 5px;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+/* Lista de Notícias */
+.news-list {
+    max-width: 1000px;
+    margin: 20px auto; /* Centraliza a lista de notícias */
+    padding: 0 20px; /* Adiciona padding para os lados */
+}
+
+.news-item {
+    display: flex;
+    padding: 20px;
+    background-color: black;
+    position: relative; /* Necessário para posicionar a linha */
+}
+
+.news-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* Posiciona a linha no fundo do item */
+    left: 2%; /* Define a margem esquerda */
+    width: 96%; /* Define a largura da linha */
+    height: 2px; /* Espessura da linha */
+    background-color: #006eff; /* Cor da linha */
+}
+
+.news-item:last-child::after {
+    content: none; /* Remove a linha após a última notícia */
+}
+
+.news-thumb {
+    width: 220px;
+    height: 130px;
+    margin-right: 20px;
+}
+
+.news-content h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.news-content p {
+    margin: 0;
+    color: #ccc;
+}
+
+.news-content a {
+    text-decoration: none;
+    color: white;
+}
+
+.news-content a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo do Login */
+.login-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-footer p {
+    color: black;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: black;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #006eff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #0056cc;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-footer a {
+    color: #006eff;
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo do Registro */
+.register-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.register-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.register-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.register-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #006eff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background-color: #0056cc;
+}
+
+/* Contêiner dos cards */
+.container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os cards se movam para a linha de baixo, se necessário */
+    justify-content: space-between; /* Espaçamento igual entre os cards */
+    margin: 0 -10px; /* Espaçamento negativo para compensar o padding nos cards */
+}
+
+.col-md-3 {
+    flex: 0 0 23%; /* Ajuste o tamanho da coluna */
+    max-width: 23%;
+    margin-bottom: 20px; /* Espaçamento entre as linhas de cards */
+    padding: 0 10px; /* Espaçamento horizontal entre os cards */
+}
+
+.card {
+    width: 290px; /* Garante que o card ocupe a largura completa da coluna */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 335px; /* Altura fixa para os cards */
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    color: #fff;
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+aside {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilo da página sobre nós*/
+nav{
+    color:white;
+    margin: 5% ;
+}
+
+#creators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajuste a altura conforme necessário */
+    text-align: center; /* Opcional: centraliza o texto */
+}
+  
+.creator {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinha o conteúdo horizontalmente no centro */
+    text-align: center; /* Opcional: centraliza o texto */
+}
+  
+.creator img {
+    max-width: 100%; /* Garante que a imagem não ultrapasse o container */
+    height: auto; /* Mantém a proporção da imagem */
+}
+  
+h3, p {
+    margin: 0.5em 0; /* Ajuste a margem conforme necessário */
+}
+
+/* Estilo exibir atleta */
+.content-wrapper-atleta {
+    flex: 1;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 93px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
+    padding: 20px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px; /* Adicionado espaçamento entre a content-wrapper e o footer */
+}
+
+h1 {
+    text-align: center;
+    color: #006eff;
+    margin-bottom: 20px;
+}
+
+.player-info, .player-stats {
+    margin-bottom: 30px;
+}
+
+.player-info h2, .player-stats h2 {
+    color: #ffffff;
+    border-bottom: 1px solid #006eff;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.player-info p, .player-stats p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.player-info img {
+    display: block;
+    margin-left: 0 auto;
+    max-width: 200px;
+    height: 200px;
+    width: 190px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 2px solid #006eff;
+}
+
+.player-info label, .player-stats label {
+    display: inline-block;
+    width: 200px;
+    font-weight: bold;
+}
+/*css exibição de clubes*/
+body, html, .club-info, .club-titles, .club-squad, .club-history {
+    color: white;
+}
+
+.club-info h2, .club-titles h2, .club-squad h2, .club-history h2 {
+    color: #006eff; /* Mantém a cor do título em azul */
+}
+
+label {
+    color: #1c31f0; /* Mantém a cor do label em azul */
+    font-weight: bold;
+}
+/*.content-wrapper-club {
+    flex: 1;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 93px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
+    /*padding: 15px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px; /* Adicionado espaçamento entre a content-wrapper e o footer */
+/*}
+
+
+
+/* Cabeçalho do clube */
+.club-header {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.club-logo {
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    border-radius: 8px;
+    object-fit: cover; /* Mantém a proporção da imagem */
+}
+.stadium-photo{
+    width: 700px;
+    height: 200px;
+    margin-left: 10px;
+    border-radius: 8px;
+    object-fit: cover; /* Mantém a proporção da imagem */
+}
+
+.club-details {
+    display: flex;
+    width: 900px;
+    height: 400px;
+    background-color: black;  /* Apenas para visualização */
+    margin-left: 10px ;          /* Centraliza horizontalmente */   
+    border-radius: 8px;         /* Arredonda os cantos */
+}
+
+.left-info, .middle-info, .right-info {
+    flex: 1;
+    padding: 0 20px;
+    box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+.left-info, .middle-info {
+    border-right: 2px solid #006eff;
+}
+
+.middle-info {
+    border-left: 2px solid #006eff;
+    border-right: 2px solid #006eff;
+}
+
+.right-info {
+    border-left: 2px solid #006eff;
+}
+
+/* Estilo do título */
+h1 {
+    text-align: left;
+    color: #006eff;
+    margin-bottom: 20px;
+}
+
+/* Estilo da linha horizontal */
+.horizontal-line {
+    border: none;
+    border-top: 5px solid #006eff;
+    
+}
+
+/* Estilo das seções */
+.club-section {
+    margin-bottom: 30px;
+}
+
+.club-section h2 {
+    color: #ffffff;
+    border-bottom: 1px solid #006eff;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.club-section p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.club-section label {
+    display: inline-block;
+    width: 200px;
+    font-weight: bold;
+    color: #006eff; /* Cor do label em azul */
+}
+
+.exibe-time {
+    display: flex;
+    width: 100%;
+    max-width: 1600px;
+    margin-top: 93px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
+    padding: 10px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px; /* Adicionado espaçamento entre a content-wrapper e o footer */
+}
+
+.club-details-players {
+    display: flex;    
+    width: 400px;
+    height: 500px;
+    background-color: black;  /* Apenas para visualização */
+    margin-right: 10px;          /* Centraliza horizontalmente */   
+    border-radius: 8px;         /* Arredonda os cantos */
+}
+
+.info-players {
+    
+    width: 800px;
+    height: 200px;
+    background-color: black;  /* Apenas para visualização */        /* Centraliza horizontalmente */   
+    border-radius: 8px;         /* Arredonda os cantos */
+}
+
+.scrollable-buttons {
+    max-height: 350px; /* Altura máxima do contêiner */
+    overflow-y: auto; /* Habilita a rolagem vertical */
+    padding: 3px; /* Espaçamento interno */
+    border: 1px solid black; /* Borda para visualização */
+    border-radius: 8px; /* Arredonda os cantos */
+    width: 550px; /* Largura do contêiner */
+    
+    background-color: black;
+}
+
+.custom-button {
+    display: block; /* Faz o botão ocupar a largura completa */
+    width: 100%; /* Garante que o botão ocupe toda a largura do contêiner */
+    height: 60px;
+    margin-bottom: 8px; /* Espaçamento entre os botões */
+    padding: 10px; /* Espaçamento interno do botão */
+    background-color: #007bff; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Arredonda os cantos */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    text-align: left; /* Centraliza o texto no botão */
+    font-size: 20px; /* Ajuste do tamanho da fonte, se necessário */
+}
+
+.custom-button:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+   
+}
+
+.button-icon {
+    width: 55px; /* Tamanho da imagem */
+    height: 50px;
+    border-radius: 20%;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+table {
+    width: 100%;
+    border-spacing: 25px; /* Adiciona espaçamento entre as células da tabela */
+}
+
+td {
+    vertical-align: top; /* Alinha o conteúdo ao topo das células */
+}
+
+.tituloClube {
+    text-align: left;
+    color: #006eff;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-top: 70px;
+    font-size: 50px;
+    
+}
+.button-icon, img{
+    vertical-align: middle;
+}
+
